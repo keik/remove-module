@@ -117,7 +117,8 @@ function remove(modules, code, opts) {
         break
       case syntax.WhileStatement:
       case syntax.ForStatement:
-        if (node.test == null || node.body == null) {
+      case syntax.ForInStatement:
+        if ((node.test == null && node.right == null) || node.body == null) {
           d(_padding + ' @@ remove' + node.type + ' @@')
             this.remove()
         }
@@ -127,13 +128,6 @@ function remove(modules, code, opts) {
           parent.test = node.right
         else if (node.right == null)
           parent.test = node.left
-        break
-
-      case syntax.ForInStatement:
-        if (node.body == null) {
-          d(_padding + ' @@ remove' + node.type + ' @@')
-          this.remove()
-        }
         break
       }
     }
