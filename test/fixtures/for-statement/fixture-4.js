@@ -1,5 +1,5 @@
 var debug = require('debug')
 
-for (debug;debug;debug) {
+for (debug; debug; debug) {
   debug()
 }
