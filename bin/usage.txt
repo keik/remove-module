@@ -1,0 +1,15 @@
+Usage: rmmodule [modules] <file> [options]
+
+Options:
+
+     --module, -m  A module name you want to remove.
+
+       --file, -f  A file you want to transform.
+
+    --outfile, -o  Write the debug striped code to this file.
+                   If unspecified, rmmodule prints to stdout.
+
+      --debug, -d  Enable source maps that allow you to debug your files
+                   separately.
+
+       --help, -h  Show this message.

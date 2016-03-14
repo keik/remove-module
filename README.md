@@ -16,16 +16,38 @@ npm install remove-module
 # CLI
 
 ```
+Usage: rmmodule [modules] <file> [options]
+
+Options:
+
+     --module, -m  A module name you want to remove.
+
+       --file, -f  A file you want to transform.
+
+    --outfile, -o  Write the debug striped code to this file.
+                   If unspecified, rmmodule prints to stdout.
+
+      --debug, -d  Enable source maps that allow you to debug your files
+                   separately.
+
+       --help, -h  Show this message.
+```
+
+For example, if you want to remove `debug` from your code,
+
+```
 rmmodule debug src.js
 ```
 
-will remove codes to which related `debug` module from src.js and print results to stdout, or output to the file with `-o` option:
+will remove codes to which related `debug` module from src.js and print results to stdout, or
 
 ```
 rmmodule debug src.js -o dist.js
 ```
 
-and you can pass `-d` option to enable source map.
+will output to the file with `-o` option.
+
+You can pass `-d` option to enable source map.
 
 Stdin is also available:
 
