@@ -1,0 +1,47 @@
+{
+  "name": "remove-module",
+  "version": "0.0.0",
+  "description": "Remove code to which related specific module using AST.",
+  "main": "index.js",
+  "bin": "bin/cmd.js",
+  "scripts": {
+    "test": "tape test/*.js",
+    "lint": "eslint index.js bin/cmd.js 'test/**/*.js'",
+    "version": "npm run lint && npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/keik/remove-module.git"
+  },
+  "author": "keik <k4t0.kei@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/keik/remove-module/issues"
+  },
+  "keywords": [
+    "ast",
+    "console",
+    "debug",
+    "log",
+    "logger",
+    "transform"
+  ],
+  "homepage": "https://github.com/keik/remove-module#readme",
+  "files": [
+    "bin",
+    "index.js"
+  ],
+  "dependencies": {
+    "bows": "^1.4.8",
+    "convert-source-map": "^1.2.0",
+    "escodegen": "^1.8.0",
+    "esprima": "^2.7.2",
+    "merge-source-map": "^1.0.1",
+    "minimist": "^1.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^2.4.0",
+    "source-map": "^0.5.3",
+    "tape": "^4.5.1"
+  }
+}
