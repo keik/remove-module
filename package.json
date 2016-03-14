@@ -34,10 +34,11 @@
     "index.js"
   ],
   "dependencies": {
-    "bows": "^1.4.8",
     "convert-source-map": "^1.2.0",
+    "debug": "^2.2.0",
     "escodegen": "^1.8.0",
     "esprima": "^2.7.2",
+    "estraverse": "^4.2.0",
     "merge-source-map": "^1.0.1",
     "minimist": "^1.2.0"
   },
