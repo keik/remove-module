@@ -14,7 +14,7 @@ test('API `remove` should remove codes to which related specific module', functi
 
 test('API `remove` should not remove codes when `modules` arguments is not `string` or `array` of it', function(t) {
 
-  var CODE = fs.readFileSync(__dirname + '/fixtures/api-remove.js', 'utf8')
+  var CODE = fs.readFileSync(__dirname + '/fixtures/remove.js', 'utf8')
 
   t.test('`modules` is null', function(t) {
     var transformed = remove(null, CODE)
