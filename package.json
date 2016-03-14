@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "description": "Remove code to which related specific module using AST.",
   "main": "index.js",
-  "bin": "bin/cmd.js",
+  "bin": {
+    "rmmodule": "bin/cmd.js"
+  },
   "scripts": {
     "test": "tape test/*.js",
     "lint": "eslint index.js bin/cmd.js 'test/**/*.js'",
