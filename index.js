@@ -109,6 +109,12 @@ function remove(modules, code, opts) {
           this.remove()
         }
         break
+      case syntax.ExpressionStatement:
+        if (node.expression == null) {
+          d(_padding + ' @@ remove' + node.type + ' @@')
+          this.remove()
+        }
+        break
       case syntax.IfStatement:
         if (node.test == null || node.consequent == null) {
           d(_padding + ' @@ remove' + node.type + ' @@')
@@ -124,15 +130,19 @@ function remove(modules, code, opts) {
         }
         break
       case syntax.LogicalExpression:
-        if (node.left == null)
-          parent.test = node.right
-        else if (node.right == null)
-          parent.test = node.left
+        if (node.right == null || node.left == null)
+          if (node.operator === '&&') {
+            this.remove()
+          } else if (node.operator === '||') {
+            return node.right && node.right || node.left
+          }
         break
       }
+      return node
     }
   })
 
+  d('[results] %j', ast)
   var gen = escodegen.generate(ast, {
     sourceMap: opts.debug && opts.filepath,
     sourceContent: opts.debug && code,
