@@ -19,7 +19,9 @@ var fs       = require('fs'),
     filepath = opts.f || opts._.pop(),
     modules  = opts.m || opts._,
     out      = (typeof opts.o === 'string')
-      ? fs.createWriteStream(opts.o).on('close', () => process.exit(1))
+      ? fs.createWriteStream(opts.o).on('close', function() {
+        process.exit(1)
+      })
       : process.stdout
 
 main()
@@ -45,12 +47,14 @@ function main() {
   else if (!process.stdin.isTTY) {
     var data = ''
     process.stdin
-      .on('readable', () => {
+      .on('readable', function() {
         var chunk
         while ((chunk = process.stdin.read()))
           data += chunk
       })
-      .on('end', () => out.write(remove(modules, data)))
+      .on('end', function() {
+        out.write(remove(modules.concat(filepath), data))
+      })
   } else {
     help()
   }
@@ -59,5 +63,7 @@ function main() {
 function help() {
   fs.createReadStream(__dirname + '/usage.txt')
     .pipe(process.stdout)
-    .on('close', () => process.exit(1))
+    .on('close', function() {
+      process.exit(1)
+    })
 }
