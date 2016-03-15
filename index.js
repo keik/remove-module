@@ -91,14 +91,17 @@ function remove(modules, code, opts) {
           assigned[assigned.length - 1].push(node.id.name)
           break
         case syntax.AssignmentExpression:
-          assigned[assigned.length - 1].push(node.left.name)
-          removee = parent
+          if (node.left != null) {
+            assigned[assigned.length - 1].push(node.left.name)
+            removee = parent
+          }
           break
         case syntax.Identifier:
           switch(parent.type) {
           case syntax.CallExpression:
           case syntax.MemberExpression:
           case syntax.SwitchCase:
+          case syntax.AssignmentExpression:
             removee = parent
           }
           break
