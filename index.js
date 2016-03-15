@@ -48,7 +48,6 @@ function remove(modules, code, opts) {
         }
         break
       case syntax.CallExpression:
-        console.log(node);
         if (node.callee.name === 'require'
             && node.arguments[0] && modules.indexOf(node.arguments[0].value) > -1)
           removee = node
@@ -139,6 +138,10 @@ function remove(modules, code, opts) {
           d(_padding + ' @@ remove' + node.type + ' @@')
           this.remove()
         }
+        break
+      case syntax.NewExpression:
+        if (node.callee == null)
+          this.remove()
         break
       case syntax.SwitchStatement:
         if (node.discriminant == null) {
