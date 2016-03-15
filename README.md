@@ -52,7 +52,8 @@ You can pass `-d` option to enable source map.
 Stdin is also available:
 
 ```
-echo 'var debug = require("debug")' | rmmodule debug
+% echo 'var debug = require("debug"), fs = require("fs")' | rmmodule debug
+var fs = require('fs');
 ```
 
 
