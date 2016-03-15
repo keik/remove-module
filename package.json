@@ -7,7 +7,7 @@
     "rmmodule": "bin/cmd.js"
   },
   "scripts": {
-    "test": "tape test/*.js",
+    "test": "tape test/*.js | tnyan",
     "lint": "eslint index.js bin/cmd.js 'test/**/*.js'",
     "version": "npm run lint && npm run test"
   },
@@ -45,6 +45,7 @@
   "devDependencies": {
     "eslint": "^2.4.0",
     "source-map": "^0.5.3",
+    "tap-nyan": "0.0.2",
     "tape": "^4.5.1"
   }
 }
