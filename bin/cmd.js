@@ -3,7 +3,6 @@
 var remove = require('../')
 
 var fs       = require('fs'),
-    d        = require('debug')('remove-module:cmd'),
     opts     = require('minimist')(
       process.argv.slice(2), {
         boolean: ['h', 'v', 'd'],
