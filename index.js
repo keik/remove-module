@@ -35,7 +35,10 @@ function remove(modules, code, opts) {
   estraverse.replace(ast, {
 
     enter: function(node, parent) {
-      d((_padding += ' ') + '[enter] ' + node.type + ' ' + (node.value || '*') + ' ' + (node.name || '*'))
+      d((_padding += ' ') + '[enter] ' + node.type + ' ' + (node.value || node.property && node.property.name || '*') + ' ' + (node.name || '*'))
+
+      if (removee === parent)
+        this.skip()
 
       switch(node.type) {
       case syntax.ImportDeclaration:
@@ -45,12 +48,18 @@ function remove(modules, code, opts) {
         }
         break
       case syntax.CallExpression:
+        console.log(node);
         if (node.callee.name === 'require'
             && node.arguments[0] && modules.indexOf(node.arguments[0].value) > -1)
           removee = node
         break
       case syntax.BlockStatement:
         assigned.push([])
+        break
+      case syntax.Property:
+        if (Array.prototype.concat.apply([], assigned).indexOf(node.value.name) > -1)
+          removee = node
+        this.skip()
         break
       case syntax.Identifier:
         if (Array.prototype.concat.apply([], assigned).indexOf(node.name) > -1) {
@@ -67,7 +76,8 @@ function remove(modules, code, opts) {
     },
 
     leave: function(node, parent) {
-      d((_padding = _padding.substr(1)) + ' [leave] ' + node.type + ' ' + (node.value || '*') + ' ' + (node.name || '*'))
+      d((_padding =
+         _padding.substr(1)) + ' [leave] ' + node.type + ' ' + (node.value || node.property && node.property.name || '*') + ' ' + (node.name || '*'))
 
       if (node === removee) {
         d(_padding + ' @@ remove' + node.type + ' @@')
@@ -89,6 +99,7 @@ function remove(modules, code, opts) {
           switch(parent.type) {
           case syntax.CallExpression:
           case syntax.MemberExpression:
+          case syntax.SwitchCase:
             removee = parent
           }
           break
@@ -125,6 +136,12 @@ function remove(modules, code, opts) {
       case syntax.ForStatement:
       case syntax.ForInStatement:
         if ((node.test == null && node.right == null) || node.body == null) {
+          d(_padding + ' @@ remove' + node.type + ' @@')
+          this.remove()
+        }
+        break
+      case syntax.SwitchStatement:
+        if (node.discriminant == null) {
           d(_padding + ' @@ remove' + node.type + ' @@')
           this.remove()
         }

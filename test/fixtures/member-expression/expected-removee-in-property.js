@@ -1,2 +1,3 @@
 a.debug();
-a.debug.b();
+b.c.debug();
+d.debug.e();
