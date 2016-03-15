@@ -1,4 +1,4 @@
 var debug = require('debug')
 
 debug.a()
-a.debug()
+debug.b.c()
