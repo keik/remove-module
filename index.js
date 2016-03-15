@@ -54,7 +54,7 @@ function remove(modules, code, opts) {
         break
       case syntax.Identifier:
         if (Array.prototype.concat.apply([], assigned).indexOf(node.name) > -1) {
-          // parent node of marked identifer will be removed basically,
+          // Identifier will be removed basically,
           // except in the case that parent MemberExpression's root object is no-marked
           if (parent.type === syntax.MemberExpression && parent.object) {
             if (Array.prototype.concat.apply([], assigned).indexOf(parent.object.name) > -1)
@@ -118,7 +118,7 @@ function remove(modules, code, opts) {
       case syntax.IfStatement:
         if (node.test == null || node.consequent == null) {
           d(_padding + ' @@ remove' + node.type + ' @@')
-            this.remove()
+          this.remove()
         }
         break
       case syntax.WhileStatement:
@@ -126,7 +126,7 @@ function remove(modules, code, opts) {
       case syntax.ForInStatement:
         if ((node.test == null && node.right == null) || node.body == null) {
           d(_padding + ' @@ remove' + node.type + ' @@')
-            this.remove()
+          this.remove()
         }
         break
       case syntax.LogicalExpression:
@@ -134,7 +134,7 @@ function remove(modules, code, opts) {
           if (node.operator === '&&') {
             this.remove()
           } else if (node.operator === '||') {
-            return node.right && node.right || node.left
+            return node.right ? node.right : node.left
           }
         break
       }
