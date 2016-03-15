@@ -79,7 +79,7 @@ function remove(modules, code, opts) {
          _padding.substr(1)) + ' [leave] ' + node.type + ' ' + (node.value || node.property && node.property.name || '*') + ' ' + (node.name || '*'))
 
       if (node === removee) {
-        d(_padding + ' @@ remove' + node.type + ' @@')
+        d(_padding + ' @@ remove ' + node.type + ' @@')
         this.remove()
         switch(node.type) {
         case syntax.ImportDeclaration:
@@ -118,19 +118,19 @@ function remove(modules, code, opts) {
         break
       case syntax.VariableDeclaration:
         if (node.declarations.length === 0) {
-          d(_padding + ' @@ remove' + node.type + ' @@')
+          d(_padding + ' @@ remove ' + node.type + ' @@')
           this.remove()
         }
         break
       case syntax.ExpressionStatement:
         if (node.expression == null) {
-          d(_padding + ' @@ remove' + node.type + ' @@')
+          d(_padding + ' @@ remove ' + node.type + ' @@')
           this.remove()
         }
         break
       case syntax.IfStatement:
         if (node.test == null || node.consequent == null) {
-          d(_padding + ' @@ remove' + node.type + ' @@')
+          d(_padding + ' @@ remove ' + node.type + ' @@')
           this.remove()
         }
         break
@@ -138,7 +138,7 @@ function remove(modules, code, opts) {
       case syntax.ForStatement:
       case syntax.ForInStatement:
         if ((node.test == null && node.right == null) || node.body == null) {
-          d(_padding + ' @@ remove' + node.type + ' @@')
+          d(_padding + ' @@ remove ' + node.type + ' @@')
           this.remove()
         }
         break
@@ -148,7 +148,7 @@ function remove(modules, code, opts) {
         break
       case syntax.SwitchStatement:
         if (node.discriminant == null) {
-          d(_padding + ' @@ remove' + node.type + ' @@')
+          d(_padding + ' @@ remove ' + node.type + ' @@')
           this.remove()
         }
         break
