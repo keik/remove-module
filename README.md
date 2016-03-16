@@ -39,7 +39,7 @@ For example, if you want to remove `debug` from your code,
 rmmodule debug src.js
 ```
 
-will remove codes to which related `debug` module from src.js and print results to stdout, or
+will remove code to which related `debug` module from src.js and print results to stdout, or
 
 ```
 rmmodule debug src.js -o dist.js
