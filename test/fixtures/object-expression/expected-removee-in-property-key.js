@@ -1,5 +1,2 @@
-a({ debug: b });
-c({
-    debug: d,
-    e: f
-});
+a({});
+c({ f: g });

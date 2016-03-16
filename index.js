@@ -56,9 +56,10 @@ function remove(modules, code, opts) {
         assigned.push([])
         break
       case syntax.Property:
-        if (Array.prototype.concat.apply([], assigned).indexOf(node.value.name) > -1)
+        if (Array.prototype.concat.apply([], assigned).indexOf(node.value.name) > -1) {
           removee = node
-        this.skip()
+          this.skip()
+        }
         break
       case syntax.Identifier:
         if (Array.prototype.concat.apply([], assigned).indexOf(node.name) > -1) {
@@ -102,6 +103,7 @@ function remove(modules, code, opts) {
           case syntax.MemberExpression:
           case syntax.SwitchCase:
           case syntax.AssignmentExpression:
+          case syntax.Property:
             removee = parent
           }
           break

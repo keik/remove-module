@@ -1,4 +1,5 @@
-var debug = require('debug')
+var debug = require('debug'),
+    d     = debug('my-app')
 
 a({debug: b})
-c({debug: d, e: f})
+c({debug: e, f: g, h: d})
