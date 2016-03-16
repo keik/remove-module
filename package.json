@@ -4,7 +4,8 @@
   "description": "Remove code to which related specific module using AST.",
   "main": "index.js",
   "bin": {
-    "rmmodule": "bin/cmd.js"
+    "rmmodule": "bin/cmd.js",
+    "remove-module": "bin/cmd.js"
   },
   "scripts": {
     "test": "tape test/*.js | tnyan",
