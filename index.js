@@ -145,9 +145,29 @@ function remove(modules, code, opts) {
           this.remove()
         }
         break
-      case syntax.NewExpression:
-        if (node.callee == null)
+      case syntax.AssignmentExpression:
+        if (node.right == null) {
+          d(_padding + ' @@ remove ' + node.type + ' @@')
           this.remove()
+        }
+        break
+      case syntax.BinaryExpression:
+        if (node.right == null || node.left == null) {
+          d(_padding + ' @@ remove ' + node.type + ' @@')
+          this.remove()
+        }
+        break
+      case syntax.ConditionalExpression:
+        if (node.test == null || node.consequent == null || node.alternate == null) {
+          d(_padding + ' @@ remove ' + node.type + ' @@')
+          this.remove()
+        }
+        break
+      case syntax.NewExpression:
+        if (node.callee == null) {
+          d(_padding + ' @@ remove ' + node.type + ' @@')
+          this.remove()
+        }
         break
       case syntax.SwitchStatement:
         if (node.discriminant == null) {
