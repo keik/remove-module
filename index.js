@@ -104,6 +104,7 @@ function remove(modules, code, opts) {
           case syntax.SwitchCase:
           case syntax.AssignmentExpression:
           case syntax.Property:
+          case syntax.UnaryExpression:
             removee = parent
           }
           break
