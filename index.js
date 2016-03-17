@@ -99,6 +99,7 @@ function remove(modules, code, opts) {
           break
         case syntax.Identifier:
           switch(parent.type) {
+          case syntax.VariableDeclarator:
           case syntax.CallExpression:
           case syntax.MemberExpression:
           case syntax.SwitchCase:
