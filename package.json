@@ -1,6 +1,6 @@
 {
   "name": "remove-module",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Remove code to which related specific module using AST.",
   "main": "index.js",
   "bin": {
