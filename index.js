@@ -100,6 +100,7 @@ function remove(modules, code, opts) {
         case syntax.Identifier:
           switch(parent.type) {
           case syntax.VariableDeclarator:
+          case syntax.NewExpression:
           case syntax.CallExpression:
           case syntax.MemberExpression:
           case syntax.SwitchCase:
@@ -109,6 +110,7 @@ function remove(modules, code, opts) {
             removee = parent
           }
           break
+        case syntax.NewExpression:
         case syntax.CallExpression:
         case syntax.MemberExpression:
           removee = parent
@@ -160,12 +162,6 @@ function remove(modules, code, opts) {
         break
       case syntax.ConditionalExpression:
         if (node.test == null || node.consequent == null || node.alternate == null) {
-          d(_padding + ' @@ remove ' + node.type + ' @@')
-          this.remove()
-        }
-        break
-      case syntax.NewExpression:
-        if (node.callee == null) {
           d(_padding + ' @@ remove ' + node.type + ' @@')
           this.remove()
         }
